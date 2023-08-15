@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { authenticateLogin, authenticateSignup } from "../../Service/Api";
 import {
   Dialog,
   DialogContent,
@@ -130,7 +130,7 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
   };
 
   const loginUser = async () => {
-    let response = login;
+    let response = await authenticateLogin(login);
     if (!response) showError(true);
     else {
       showError(false);
@@ -140,7 +140,7 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
   };
 
   const signupUser = async () => {
-    let response = signup;
+    let response = await authenticateSignup(signup);
     if (!response) return;
     handleClose();
     setAccount(signup.username);

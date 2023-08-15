@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import Connection from "./Database/Db.js";
 import DefaultData from "./Default.js";
+import Routes from "./Routes/Route.js";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 
@@ -21,5 +24,10 @@ app.listen(PORT, (error) => {
     console.log(`Server listening on http://localhost:${PORT}`);
   }
 });
+
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use("/", Routes);
 
 DefaultData();
