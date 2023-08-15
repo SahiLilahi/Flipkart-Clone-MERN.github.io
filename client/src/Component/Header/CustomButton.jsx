@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 
-import { Box, Typography, Badge, Button, styled } from "@mui/material";
+import { Box, Typography, Button, styled } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import LoginDialog from "../Login/LoginDialog";
 import Profile from "./Profile";
+
 import { LoginContext } from "../../Context/ContextProvider";
 
 const Container = styled(Box)({

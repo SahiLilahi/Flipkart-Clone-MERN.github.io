@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { authenticateLogin, authenticateSignup } from "../../Service/Api";
+import { LoginContext } from "../../Context/ContextProvider";
 import {
   Dialog,
   DialogContent,
@@ -111,11 +112,12 @@ const accountInitialValues = {
   },
 };
 
-const LoginDialog = ({ open, setOpen, setAccount }) => {
+const LoginDialog = ({ open, setOpen }) => {
   const [login, setLogin] = useState(loginInitialValues);
   const [signup, setSignup] = useState(signupInitialValues);
   const [error, showError] = useState(false);
   const [account, toggleAccount] = useState(accountInitialValues.login);
+  const { setAccount } = useContext(LoginContext);
 
   useEffect(() => {
     showError(false);
@@ -143,7 +145,7 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
     let response = await authenticateSignup(signup);
     if (!response) return;
     handleClose();
-    setAccount(signup.username);
+    setAccount(signup.firstname);
   };
 
   const toggleSignup = () => {

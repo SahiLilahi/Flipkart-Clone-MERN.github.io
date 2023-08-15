@@ -14,7 +14,7 @@ export const userLogIn = async (request, response) => {
       return response.status(401).json("Username Already Exist");
     }
   } catch (error) {
-    response.json("Error: ", error.message);
+    response.status("Error: ", error.message);
   }
 };
 
